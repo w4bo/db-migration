@@ -1,3 +1,5 @@
+@file:JvmName("Migrate")
+
 package it.w4bo.database
 
 import io.github.cdimascio.dotenv.Dotenv

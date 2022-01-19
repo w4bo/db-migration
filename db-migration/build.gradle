@@ -67,4 +67,9 @@ test {
     jvmArgs "-Xmx4g"
 }
 
-defaultTasks 'clean', 'build', 'check', 'war'
+task runMigration(type: JavaExec) {
+    main = 'it.w4bo.database.Migrate'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+defaultTasks 'clean', 'build', 'check', 'war', 'runMigration'
