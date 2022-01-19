@@ -1,0 +1,56 @@
+version: "3.9"
+services:
+
+  # Image of the MySQL database
+  mysqla:
+    image: mysql:5.7
+    hostname: mysqla
+    container_name: mysqla
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_A_PWD}
+      MYSQL_TCP_PORT: ${MYSQL_A_PORT}
+    expose:
+      - ${MYSQL_A_PORT}
+    ports:
+      - "${MYSQL_A_PORT}:${MYSQL_A_PORT}"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 5s
+      retries: 10
+    networks:
+      - default
+
+  mysqlb:
+    image: mysql:5.7
+    hostname: mysqlb
+    container_name: mysqlb
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_B_PWD}
+      MYSQL_TCP_PORT: ${MYSQL_B_PORT}
+    expose:
+      - ${MYSQL_B_PORT}
+    ports:
+      - "${MYSQL_B_PORT}:${MYSQL_B_PORT}"
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 5s
+      retries: 10
+    networks:
+      - default
+
+  # Populate the MySQL database when the database is ready (i.e., is healthy)
+  mysql-seed:
+    hostname: mysql-seed
+    container_name: mysql-seed
+    image: mysql:8.0
+    depends_on:
+      mysqla:
+        condition: service_healthy
+      mysqlb:
+        condition: service_healthy
+    volumes:
+      - ./resources/:/data
+    command: >
+      /bin/bash -c "mysql -hmysqlb -u${MYSQL_B_USER} -P${MYSQL_B_PORT} -p${MYSQL_B_PWD} < /data/foodmart-mysql-schema.sql; mysql -hmysqla -u${MYSQL_A_USER} -P${MYSQL_A_PORT} -p${MYSQL_A_PWD} < /data/foodmart-mysql.sql"
+    networks:
+      - default

@@ -1,0 +1,24 @@
+name: "build"
+on: [push, pull_request]
+jobs:
+  launch-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.4.0
+      - name: Run docker
+        run: |
+          cd COOL
+          cp .env.example .env
+          chmod +x *.sh
+          ./build.sh
+          ./download.sh
+          ./start.sh
+      - name: Build
+        run: |
+          cd COOL
+          chmod +x ./gradlew
+          ./gradlew
+      - name: Stop docker
+        run: |
+          cd COOL
+          ./stop.sh
