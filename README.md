@@ -7,6 +7,7 @@ Moving data from/to databases.
 ## Supported migrations
 
 | From | To |
+| - | - | 
 | Oracle 11g | MySQL |
 | MySQL | Oracle 11g |
 | MySQL | MySQL |
