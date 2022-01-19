@@ -40,7 +40,7 @@ dependencies {
     implementation 'com.github.javafaker:javafaker:1.0.2'
     implementation 'com.github.haifengl:smile-core:2.6.0'
     implementation 'org.jgrapht:jgrapht-core:1.5.1'
-    implementation 'edu.stanford.nlp:stanford-corenlp:4.2.2'
+    implementation 'edu.stanford.nlp:stanford-corenlp:4.3.2'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
     implementation 'commons-io:commons-io:2.11.0'
     implementation 'org.slf4j:slf4j-api:1.7.32'
