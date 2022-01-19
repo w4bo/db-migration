@@ -7,7 +7,7 @@ jobs:
       - uses: actions/checkout@v2.4.0
       - name: Run docker
         run: |
-          cd COOL
+          cd db-migration
           cp .env.example .env
           chmod +x *.sh
           ./build.sh
@@ -15,10 +15,10 @@ jobs:
           ./start.sh
       - name: Build
         run: |
-          cd COOL
+          cd db-migration
           chmod +x ./gradlew
           ./gradlew
       - name: Stop docker
         run: |
-          cd COOL
+          cd db-migration
           ./stop.sh
