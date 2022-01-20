@@ -144,6 +144,9 @@ fun disableIndexes(dbms: String, conn: Connection) {
             conn.createStatement().executeQuery("SET unique_checks=0")
             conn.createStatement().executeQuery("SET foreign_key_checks=0")
         }
+        "oracle" -> {
+            // do nothing
+        }
         else -> TODO("Not implemented")
     }
 }
