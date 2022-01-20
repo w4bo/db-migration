@@ -1,11 +1,15 @@
 version: "3.9"
 services:
 
-  oracle-db:
+  oracledb:
+    hostname: oracledb
+    container_name: oracledb
     image: oracleinanutshell/oracle-xe-11g:latest
     ports:
-      - 1521:1521
+      - "${ORACLE_A_PORT}:${ORACLE_A_PORT}"
       - 5500:5500
+    volumes:
+      - ./resources/:/data
 
   # Image of the MySQL database
   mysqla:
