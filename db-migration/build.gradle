@@ -5,7 +5,7 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.6.10'
     id 'org.gretty' version '3.0.7'
     id 'idea'
-    id "nebula.lint" version "16.26.0"
+    id "nebula.lint" version "17.6.1"
 }
 
 gretty {
