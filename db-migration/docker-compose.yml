@@ -11,6 +11,18 @@ services:
     volumes:
       - ./resources/:/data
 
+  oracledb-seed:
+    hostname: oracledb-seed
+    container_name: oracledb-seed
+    image: loivis/sqlplus
+    depends_on:
+      - oracledb
+    command: >
+      /bin/bash -c "sqlplus ${ORACLE_A_USER}/${ORACLE_A_PWD}@${ORACLE_A_IP}:${ORACLE_A_PORT}/${ORACLE_A_DB}"
+    networks:
+      - default
+
+
   # Image of the MySQL database
   mysqla:
     image: mysql:5.7
