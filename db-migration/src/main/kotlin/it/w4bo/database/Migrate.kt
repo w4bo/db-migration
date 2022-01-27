@@ -27,7 +27,7 @@ fun getConnString(dbms: String, ip: String, port: Int, db: String): String {
 
 fun main(args: Array<String>) {
     val dotenv = Dotenv.load()
-    val parser = ArgParser("Migrating data")
+    val parser = ArgParser("Data migration")
     val iip by parser.option(ArgType.String, shortName = "iip").default(dotenv.get("iip"))
     val oip by parser.option(ArgType.String, shortName = "oip").default(dotenv.get("oip"))
     val iport by parser.option(ArgType.Int, shortName = "iport").default(dotenv.get("iport").toInt())

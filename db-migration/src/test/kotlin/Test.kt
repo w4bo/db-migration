@@ -1,7 +1,7 @@
 package test
 
 import io.github.cdimascio.dotenv.Dotenv
-import it.w4bo.database.connect
+import it.w4bo.database.waitForIt
 import it.w4bo.database.getConnString
 import it.w4bo.database.migrate
 import org.junit.jupiter.api.Assertions
@@ -18,15 +18,15 @@ class TestMigration {
 
     companion object {
         val dotenv = Dotenv.load()
-        val WAIT = 1000 * 60 * 5
+        val WAIT = 1000 * 60 * 2
 
         @BeforeAll
         @JvmStatic
         internal fun beforeAll() {
             try {
-                connect(dotenv.get("MYSQL_A_DBMS"), dotenv.get("MYSQL_A_IP"), dotenv.get("MYSQL_A_PORT").toInt(), dotenv.get("MYSQL_A_DB"), dotenv.get("MYSQL_A_USER"), dotenv.get("MYSQL_A_PWD"), WAIT)
-                connect(dotenv.get("MYSQL_B_DBMS"), dotenv.get("MYSQL_B_IP"), dotenv.get("MYSQL_B_PORT").toInt(), dotenv.get("MYSQL_B_DB"), dotenv.get("MYSQL_B_USER"), dotenv.get("MYSQL_B_PWD"), WAIT)
-                connect(dotenv.get("ORACLE_A_DBMS"), dotenv.get("ORACLE_A_IP"), dotenv.get("ORACLE_A_PORT").toInt(), dotenv.get("ORACLE_A_DB"), dotenv.get("ORACLE_A_USER"), dotenv.get("ORACLE_A_PWD"), WAIT)
+                waitForIt(dotenv.get("MYSQL_A_DBMS"), dotenv.get("MYSQL_A_IP"), dotenv.get("MYSQL_A_PORT").toInt(), dotenv.get("MYSQL_A_DB"), dotenv.get("MYSQL_A_USER"), dotenv.get("MYSQL_A_PWD"), WAIT)
+                waitForIt(dotenv.get("MYSQL_B_DBMS"), dotenv.get("MYSQL_B_IP"), dotenv.get("MYSQL_B_PORT").toInt(), dotenv.get("MYSQL_B_DB"), dotenv.get("MYSQL_B_USER"), dotenv.get("MYSQL_B_PWD"), WAIT)
+                waitForIt(dotenv.get("ORACLE_A_DBMS"), dotenv.get("ORACLE_A_IP"), dotenv.get("ORACLE_A_PORT").toInt(), dotenv.get("ORACLE_A_DB"), dotenv.get("ORACLE_A_USER"), dotenv.get("ORACLE_A_PWD"), WAIT)
             } catch (e: Exception) {
                 fail { e.message!! }
             }

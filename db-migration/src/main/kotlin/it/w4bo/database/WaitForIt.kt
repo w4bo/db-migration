@@ -8,7 +8,7 @@ import java.sql.DriverManager
 
 fun main(args: Array<String>) {
     val dotenv = Dotenv.load()
-    val parser = ArgParser("Migrating data")
+    val parser = ArgParser("Wait for it")
     val iip by parser.option(ArgType.String, shortName = "iip").default(dotenv.get("iip"))
     val iport by parser.option(ArgType.Int, shortName = "iport").default(dotenv.get("iport").toInt())
     val idbms by parser.option(ArgType.String, shortName = "idbms").default(dotenv.get("idbms"))
@@ -17,10 +17,10 @@ fun main(args: Array<String>) {
     val ipwd by parser.option(ArgType.String, shortName = "ipwd").default(dotenv.get("ipwd"))
     val waitTime by parser.option(ArgType.Int, shortName = "wait").default(dotenv.get("WAIT_WAIT_TIME").toInt())
     parser.parse(args)
-    connect(idbms, iip, iport, idb, iuser, ipwd, waitTime)
+    waitForIt(idbms, iip, iport, idb, iuser, ipwd, waitTime)
 }
 
-fun connect(
+fun waitForIt(
     idbms: String,
     iip: String,
     iport: Int,
@@ -52,6 +52,6 @@ fun connect(
         }
     }
     if (serviceDown) {
-        throw IllegalArgumentException("Unreachable database")
+        throw IllegalArgumentException("Unreachable database $idbms, $iip, $iport, $idb, $iuser")
     }
 }
