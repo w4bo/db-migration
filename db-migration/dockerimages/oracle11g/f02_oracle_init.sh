@@ -1,4 +1,3 @@
-# expdp frenchelectricity/oracle@research full=Y directory=oracle_dump dumpfile=frenchelectricity.dmp
 # expdp frenchelectricity/oracle@research directory=oracle_dump dumpfile=frenchelectricity.dmp SCHEMAS=frenchelectricity
 # expdp frenchelectricityext/oracle@research directory=oracle_dump dumpfile=frenchelectricityext.dmp SCHEMAS=frenchelectricityext
 # expdp covid_weekly/oracle@research directory=oracle_dump dumpfile=covid_weekly.dmp SCHEMAS=covid_weekly
