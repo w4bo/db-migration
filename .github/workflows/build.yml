@@ -24,7 +24,7 @@ jobs:
         run: |
           cd db-migration
           chmod +x ./gradlew
-          ./gradlew
+          ./gradlew --stacktrace
       - name: Stop docker
         run: |
           cd db-migration
