@@ -24,7 +24,7 @@ fun waitForIt(
     idbms: String,
     iip: String,
     iport: Int,
-    idb: String,
+    idb: String?,
     iuser: String,
     ipwd: String,
     waitTime: Int

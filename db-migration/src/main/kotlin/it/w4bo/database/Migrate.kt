@@ -17,9 +17,9 @@ import java.sql.ResultSetMetaData
  * @param port PORT
  * @param db Database name
  */
-fun getConnString(dbms: String, ip: String, port: Int, db: String): String {
+fun getConnString(dbms: String, ip: String, port: Int, db: String?): String {
     return when (dbms) {
-        "mysql" -> "jdbc:mysql://$ip:$port/$db?serverTimezone=UTC&autoReconnect=true"
+        "mysql" -> "jdbc:mysql://$ip:$port${if (db == null) { "" } else { "/$db" }}?serverTimezone=UTC&autoReconnect=true"
         "oracle" -> "jdbc:oracle:thin:@$ip:$port/$db"
         else -> ""
     }
