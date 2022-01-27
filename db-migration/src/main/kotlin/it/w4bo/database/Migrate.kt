@@ -17,9 +17,9 @@ import java.sql.ResultSetMetaData
  * @param port PORT
  * @param db Database name
  */
-fun getConnString(dbms: String, ip: String, port: Int, db: String): String {
+fun getConnString(dbms: String, ip: String, port: Int, db: String?): String {
     return when (dbms) {
-        "mysql" -> "jdbc:mysql://$ip:$port/$db?serverTimezone=UTC&autoReconnect=true"
+        "mysql" -> "jdbc:mysql://$ip:$port${if (db == null) { "" } else { "/$db" }}?serverTimezone=UTC&autoReconnect=true"
         "oracle" -> "jdbc:oracle:thin:@$ip:$port/$db"
         else -> ""
     }
@@ -27,7 +27,7 @@ fun getConnString(dbms: String, ip: String, port: Int, db: String): String {
 
 fun main(args: Array<String>) {
     val dotenv = Dotenv.load()
-    val parser = ArgParser("Migrating data")
+    val parser = ArgParser("Data migration")
     val iip by parser.option(ArgType.String, shortName = "iip").default(dotenv.get("iip"))
     val oip by parser.option(ArgType.String, shortName = "oip").default(dotenv.get("oip"))
     val iport by parser.option(ArgType.Int, shortName = "iport").default(dotenv.get("iport").toInt())
@@ -116,7 +116,7 @@ fun migrate(
             ost.executeBatch()
             oconn.commit()
         } catch (e: Exception) {
-            e.printStackTrace()
+            println(e.message)
         }
         ost.close()
         ist.close()

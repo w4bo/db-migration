@@ -7,3 +7,9 @@ fi
 
 docker-compose down
 docker-compose up --build -d --remove-orphans
+
+./wait-for-it.sh ${MYSQL_A_IP}:${MYSQL_A_PORT} --strict --timeout=0 -- echo "MySQL A is up"
+./wait-for-it.sh ${MYSQL_A_IP}:${MYSQL_B_PORT} --strict --timeout=0 -- echo "MySQL B is up"
+./wait-for-it.sh ${ORACLE_A_IP}:${ORACLE_A_PORT} --strict --timeout=0 -- echo "Oracle A is up"
+
+./gradlew

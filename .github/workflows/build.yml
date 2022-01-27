@@ -17,14 +17,10 @@ jobs:
           cd db-migration
           cp .env.example .env
           chmod +x *.sh
+          chmod +x ./gradlew
           ./build.sh
           ./download.sh
           ./start.sh
-      - name: Build
-        run: |
-          cd db-migration
-          chmod +x ./gradlew
-          ./gradlew
       - name: Stop docker
         run: |
           cd db-migration

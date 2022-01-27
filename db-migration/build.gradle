@@ -29,6 +29,8 @@ sourceSets {
 
 dependencies {
     implementation 'io.github.cdimascio:dotenv-kotlin:6.2.2'
+    implementation 'com.github.doyaaaaaken:kotlin-csv-jvm:0.15.2'
+    implementation 'org.apache.commons:commons-csv:1.8'
     implementation "org.jetbrains.kotlinx:kotlinx-cli:0.3.4"
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     implementation 'mysql:mysql-connector-java:8.0.26'
