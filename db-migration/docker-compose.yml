@@ -6,6 +6,8 @@ services:
     container_name: oracledb
     build: dockerimages/oracle11g
     # image: oracleinanutshell/oracle-xe-11g:latest
+    environment:
+      - ORACLE_ALLOW_REMOTE=true
     ports:
       - "${ORACLE_A_PORT}:${ORACLE_A_PORT}"
       - 5500:5500
