@@ -37,6 +37,7 @@ fun waitForIt(
             else -> TODO("Not implemented")
         }
     var serviceDown = true
+    var s = ""
     val start = System.currentTimeMillis()
     while (serviceDown && (waitTime == 0 || System.currentTimeMillis() - start < waitTime)) {
         try {
@@ -47,11 +48,12 @@ fun waitForIt(
             iconn.close()
             serviceDown = false
         } catch (e: Exception) {
-            println("Error: ${e.message}")
+            s += e.message
+            e.printStackTrace()
             Thread.sleep(1000)
         }
     }
     if (serviceDown) {
-        throw IllegalArgumentException("Unreachable database $idbms, $iip, $iport, $idb, $iuser")
+        throw IllegalArgumentException("Unreachable database $idbms, $iip, $iport, $idb, $iuser\n$s")
     }
 }
