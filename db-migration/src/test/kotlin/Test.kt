@@ -18,7 +18,7 @@ class TestMigration {
 
     companion object {
         val dotenv = Dotenv.load()
-        val WAIT: Int = 1000 * 60 * 1
+        val WAIT: Int = 1000 * 60 * 10
 
         @BeforeAll
         @JvmStatic

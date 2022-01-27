@@ -32,7 +32,7 @@ fun waitForIt(
     val iurl = getConnString(idbms, iip, iport, idb)
     val select =
         when (idbms) {
-            "oracle" -> "select * from dual"
+            "oracle" -> "select 1 from dual"
             "mysql" -> "select 1"
             else -> TODO("Not implemented")
         }
