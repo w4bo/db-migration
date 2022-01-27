@@ -1,4 +1,4 @@
-create directory oracle_dump as '/data';
+CREATE DIRECTORY ORACLE_DUMP as '/data';
 
 create user foodmart identified by oracle;
 create user frenchelectricity identified by oracle;
