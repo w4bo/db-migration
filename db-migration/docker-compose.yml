@@ -4,7 +4,8 @@ services:
   oracledb:
     hostname: oracledb
     container_name: oracledb
-    image: oracleinanutshell/oracle-xe-11g:latest
+    build: dockerimages/oracle11g
+    # image: oracleinanutshell/oracle-xe-11g:latest
     ports:
       - "${ORACLE_A_PORT}:${ORACLE_A_PORT}"
       - 5500:5500

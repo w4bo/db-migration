@@ -116,7 +116,7 @@ fun migrate(
             ost.executeBatch()
             oconn.commit()
         } catch (e: Exception) {
-            e.printStackTrace()
+            println(e.message)
         }
         ost.close()
         ist.close()
