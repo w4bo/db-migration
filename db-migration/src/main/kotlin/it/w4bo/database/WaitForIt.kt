@@ -5,6 +5,10 @@ import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.default
 import java.sql.DriverManager
+import java.util.TimeZone
+
+
+
 
 fun main(args: Array<String>) {
     val dotenv = Dotenv.load()
@@ -41,6 +45,8 @@ fun waitForIt(
     val start = System.currentTimeMillis()
     while (serviceDown && (waitTime == 0 || System.currentTimeMillis() - start < waitTime)) {
         try {
+            val timeZone = TimeZone.getTimeZone("Europe/Madrid")
+            TimeZone.setDefault(timeZone)
             val iconn = DriverManager.getConnection(iurl, iuser, ipwd)
             val ist = iconn.createStatement()
             ist.executeQuery(select).close()
