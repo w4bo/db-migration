@@ -14,7 +14,7 @@ services:
 
   # Image of the MySQL database
   mysqla:
-    image: mysql:8.0
+    image: mysql:5.7
     hostname: mysqla
     container_name: mysqla
     environment:
@@ -32,7 +32,7 @@ services:
       - default
 
   mysqlb:
-    image: mysql:8.0
+    image: mysql:5.7
     hostname: mysqlb
     container_name: mysqlb
     environment:
