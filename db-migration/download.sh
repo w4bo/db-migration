@@ -5,5 +5,6 @@ curl -o COVID_WEEKLY.DMP http://big.csr.unibo.it/projects/nosql-datasets/COVID_W
 curl -o FOODMART.DMP http://big.csr.unibo.it/projects/nosql-datasets/FOODMART.DMP
 curl -o FRENCHELECTRICITY.DMP http://big.csr.unibo.it/projects/nosql-datasets/FRENCHELECTRICITY.DMP
 curl -o FRENCHELECTRICITYEXT.DMP http://big.csr.unibo.it/projects/nosql-datasets/FRENCHELECTRICITYEXT.DMP
-ls resources
+chmod -R 777 *
+ls -las .
 cd -
