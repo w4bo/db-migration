@@ -5,7 +5,8 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.6.10'
     id 'org.gretty' version '3.0.7'
     id 'idea'
-    id "nebula.lint" version "17.6.1"
+    id 'nebula.lint' version '17.6.1'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 gretty {
@@ -74,4 +75,4 @@ task runMigration(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
 }
 
-defaultTasks 'clean', 'build', 'check', 'war', 'runMigration'
+defaultTasks 'clean', 'build', 'check', 'war', 'shadowJar', 'runMigration'

@@ -7,9 +7,6 @@ import kotlinx.cli.default
 import java.sql.DriverManager
 import java.util.TimeZone
 
-
-
-
 fun main(args: Array<String>) {
     val dotenv = Dotenv.load()
     val parser = ArgParser("Wait for it")
